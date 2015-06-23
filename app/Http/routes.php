@@ -15,11 +15,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('home', 'AdController@index');
 Route::get('home', function () {
-    return view('simapta.template.admin.master');
+    return view('simapta.template.admin.dashboard');
 });
 
+Route::get('dashboard', function () {
+    return view('simapta.template.admin.dashboard');
+});
+
+Route::get('instansi/{show?}', function ($show = 'list') {
+
+	if($show == 'form') {
+
+		return view('simapta.template.admin.instansiForm');
+
+	} else { 
+
+		return view('simapta.template.admin.instansiTable');
+	}
+
+});
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

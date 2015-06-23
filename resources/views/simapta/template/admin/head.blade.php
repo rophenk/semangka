@@ -17,6 +17,9 @@
 {!! Html::style('assets/global/plugins/fullcalendar/fullcalendar.min.css') !!}
 {!! Html::style('assets/global/plugins/jqvmap/jqvmap/jqvmap.css') !!}
 <!-- END PAGE LEVEL PLUGIN STYLES -->
+<!-- BEGIN PAGE LEVEL STYLES -->
+@yield('pagestyle')
+<!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN PAGE STYLES -->
 {!! Html::style('assets/admin/pages/css/tasks.css') !!}
 <!-- END PAGE STYLES -->

@@ -11,31 +11,32 @@
 				<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
 				<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 					<li class="start active ">
-						<a href="/home">
+						<a href="home">
 						<i class="icon-home"></i>
 						<span class="title">Dashboard</span>
-						<span class="selected"></span>
+						@yield('dashboard-selected')
 						</a>
 					</li>
 					<li>
 						<a href="javascript:;">
 						<i class="icon-cloud-upload"></i>
 						<span class="title">Sumber</span>
+						@yield('instansi-selected')
 						<span class="arrow "></span>
 						</a>
 						<ul class="sub-menu">
 							<li>
-								<a href="/instansi">
+								<a href="instansi">
 								<i class="icon-briefcase"></i>
 								Instansi</a>
 							</li>
 							<li>
-								<a href="/server">
-								<i class="icon-basket"></i>
+								<a href="server">
+								<i class="icon-disc"></i>
 								Server</a>
 							</li>
 							<li>
-								<a href="/apis">
+								<a href="apis">
 								<i class="icon-layers"></i>
 								API/XLS/CSV</a>
 							</li>

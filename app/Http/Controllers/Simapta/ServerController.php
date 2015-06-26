@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Simapta;
 
 use Illuminate\Http\Request;
-
+use Rhumsaa\Uuid\Uuid;
+use Rhumsaa\Uuid\Exception\UnsatisfiedDependencyException;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Simapta\ServerModel;
+use App\Models\Simapta\InstansiModel;
 
 class ServerController extends Controller
 {
@@ -32,18 +34,30 @@ class ServerController extends Controller
      */
     public function create()
     {
+
+        $instansi_options = InstansiModel::all();
+
         // Tampilkan Form Server
-        return view('simapta.template.admin.serverForm');
-    }
+        return view('simapta.template.admin.serverForm', ['instansi_options' => $instansi_options]);
+        //return $instansi_options;
+    }   
 
     /**
      * Store a newly created resource in storage.
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        // Validate the request...
+        $server = new ServerModel;
+        $server->uuid = Uuid::uuid4();
+        $server->instansi_id = $request->instansi_id;
+        $server->name = $request->name;
+        $server->address = $request->address;
+        $server->token = Uuid::uuid4();
+        $server->save();
+        return redirect("/server");
     }
 
     /**

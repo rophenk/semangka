@@ -24,6 +24,7 @@ class BuatTabelServer extends Migration
             $table->text('address');
             $table->text('token');
             $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

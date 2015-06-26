@@ -37,7 +37,8 @@ active open
 								</div>
 							</div>
 							<div class="portlet-body form">
-								<form role="form" method="post" action="">
+								<form role="form" method="post" action="/apis/store">
+									{!! csrf_field() !!}
 									<div class="form-body">
 										<div class="form-group form-md-line-input form-md-floating-label">
 											<input type="text" class="form-control" id="name" name="name">
@@ -45,7 +46,7 @@ active open
 											<span class="help-block">Nama API, contoh : Budidaya Holtikultura</span>
 										</div>
 										<div class="form-group form-md-line-input form-md-floating-label">
-											<input type="text" class="form-control" id="address">
+											<input type="text" class="form-control" id="address" name="address">
 											<label for="alias">Address</label>
 											<span class="help-block">Alamat server, contoh : http://pia.pertanian.go.id/simapta/api/holtikultura.csv</span>
 										</div>
@@ -60,7 +61,11 @@ active open
 										<div class="form-group">
 											<label>Server</label>
 											<select class="form-control" name="server_id">
-												<option>PIA - Server #1</option>
+												@forelse ($server_options as $server)
+													<option value="{{ $server->id }}">{{ $server->name }}</option>
+												@empty
+													<option>Belum ada data Server</option>
+												@endforelse
 											</select>
 										</div>
 									<div class="form-actions noborder">

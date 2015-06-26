@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Simapta;
 
 use Illuminate\Http\Request;
-
+use Rhumsaa\Uuid\Uuid;
+use Rhumsaa\Uuid\Exception\UnsatisfiedDependencyException;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Simapta\ApiModel;
+use App\Models\Simapta\ServerModel;
 
 class ApiController extends Controller
 {
@@ -30,8 +32,10 @@ class ApiController extends Controller
      */
     public function create()
     {
+        //Populasi dropdown Server
+        $server_options = ServerModel::all();
         // Tampilkan Form AOI
-        return view('simapta.template.admin.apisForm');
+        return view('simapta.template.admin.apisForm', ['server_options' => $server_options]);
     }
 
     /**
@@ -39,9 +43,17 @@ class ApiController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        // Validate the request...
+        $api = new ApiModel;
+        $api->uuid = Uuid::uuid4();
+        $api->server_id = $request->server_id;
+        $api->name = $request->name;
+        $api->address = $request->address;
+        $api->type = $request->type;
+        $api->save();
+        return redirect("/apis");
     }
 
     /**

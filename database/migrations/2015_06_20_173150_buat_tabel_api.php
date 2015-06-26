@@ -25,6 +25,7 @@ class BuatTabelApi extends Migration
             $table->text('address');
             $table->dateTime('last_modified');
             $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

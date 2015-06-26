@@ -62,12 +62,14 @@ Route::post('instansi/store', 'Simapta\InstansiController@store');
  */
 Route::get('server', 'Simapta\ServerController@index');
 Route::get('server/create', 'Simapta\ServerController@create');
+Route::post('server/store', 'Simapta\ServerController@store');
 
 /**
  * Route untuk menampilkan data API/XLS
  */
 Route::get('apis', 'Simapta\ApiController@index');
 Route::get('apis/create', 'Simapta\ApiController@create');
+Route::post('apis/store', 'Simapta\ApiController@store');
 
 /**
  * Route untuk menampilkan data konten manifest yang didapat dari API/XLS

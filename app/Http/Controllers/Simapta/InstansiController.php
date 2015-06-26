@@ -2,8 +2,8 @@
 namespace App\Http\Controllers\Simapta;
 
 use Illuminate\Http\Request;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use Rhumsaa\Uuid\Uuid;
+use Rhumsaa\Uuid\Exception\UnsatisfiedDependencyException;
 use App\AuthTraits\RedirectsUsers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

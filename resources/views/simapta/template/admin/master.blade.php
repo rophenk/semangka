@@ -37,6 +37,7 @@
 
 				<!-- BEGIN PAGE HEADER-->
 				<h3 class="page-title">@yield('title')</h3>
+				<br />
 				<div class="page-bar">
 					<ul class="page-breadcrumb">
 						<li>

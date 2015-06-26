@@ -1,5 +1,5 @@
 @extends('simapta.template.admin.master')
-@section('title', 'Instansi' )
+@section('title', 'API/XML/CSV' )
 @section('pagestyle')
 {!! Html::style('simapta/assets/assets/global/plugins/select2/select2.css') !!}
 {!! Html::style('simapta/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') !!}
@@ -8,12 +8,12 @@
 @section('breadcrumb')
 
 						<li>
-							<a href="/instansi">Instansi</a>
+							<a href="/apis">API</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
 
 						<li>
-							<a href="">Instansi Terdaftar</a>
+							<a href="">API Terdaftar</a>
 						</li>
 @endsection
 
@@ -26,14 +26,13 @@ active open
 @endsection
 
 @section('content')
-				<br />
 				<div class="row">
 					<div class="col-md-12">
 						<!-- BEGInsiN EXAMPLE TABLE PORTLET-->
 						<div class="portlet box grey-cascade">
 							<div class="portlet-title">
 								<div class="caption">
-									<i class="fa fa-globe"></i>Instansi Terdaftar
+									<i class="fa fa-globe"></i>Server Terdaftar
 								</div>
 								<div class="tools">
 									<a href="javascript:;" class="collapse">
@@ -51,7 +50,7 @@ active open
 									<div class="row">
 										<div class="col-md-6">
 											<div class="btn-group">
-												<a href="/instansi/create">
+												<a href="/apis/create">
 													<button id="sample_editable_1_new" class="btn green">
 													Add New <i class="fa fa-plus"></i>
 													</button>
@@ -87,16 +86,16 @@ active open
 										<input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes"/>
 									</th>
 									<th>
-										 Nama Instansi
+										 Nama API
 									</th>
 									<th>
-										 Alias
+										 Nama Server
 									</th>
 									<th>
-										 Points
+										 Alamat API
 									</th>
 									<th>
-										 Joined
+										 Tipe API
 									</th>
 									<th>
 										 Status
@@ -104,26 +103,26 @@ active open
 								</tr>
 								</thead>
 								<tbody>
-								@forelse ($instansi as $instansi)
+								@forelse ($api as $api)
 									<tr class="odd gradeX">
 									<td>
 										<input type="checkbox" class="checkboxes" value="1"/>
 									</td>
 									<td>
-										 {{ $instansi->name }}
+										{{ $api->name }}
 									</td>
 									<td>
-										{{ $instansi->alias }}
-									</td>
-									<td>
-										 120
+										{{ $api->server->name }}
 									</td>
 									<td class="center">
-										 12.12.2011
+										 {{ $api->address }}
 									</td>
+									<th>
+										 {{ $api->type }}
+									</th>
 									<td>
-										<span class="label label-sm label-warning">
-										Suspended </span>
+										<span class="label label-sm label-success">
+										available </span>
 									</td>
 								</tr>
 								@empty

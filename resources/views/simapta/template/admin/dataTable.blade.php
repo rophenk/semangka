@@ -1,5 +1,5 @@
 @extends('simapta.template.admin.master')
-@section('title', 'Instansi' )
+@section('title', 'Data' )
 @section('pagestyle')
 {!! Html::style('simapta/assets/assets/global/plugins/select2/select2.css') !!}
 {!! Html::style('simapta/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') !!}
@@ -8,20 +8,20 @@
 @section('breadcrumb')
 
 						<li>
-							<a href="/instansi">Instansi</a>
+							<a href="/data">Data</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
 
 						<li>
-							<a href="">Instansi Terdaftar</a>
+							<a href="">Data Terdaftar</a>
 						</li>
 @endsection
 
-@section('instansi-active')
+@section('data-active')
 active open
 @endsection
 
-@section('instansi-selected')
+@section('data-selected')
 <span class="selected"></span>
 @endsection
 
@@ -33,7 +33,7 @@ active open
 						<div class="portlet box grey-cascade">
 							<div class="portlet-title">
 								<div class="caption">
-									<i class="fa fa-globe"></i>Instansi Terdaftar
+									<i class="fa fa-globe"></i>Data Terdaftar
 								</div>
 								<div class="tools">
 									<a href="javascript:;" class="collapse">
@@ -51,7 +51,7 @@ active open
 									<div class="row">
 										<div class="col-md-6">
 											<div class="btn-group">
-												<a href="/instansi/create">
+												<a href="/data/create">
 													<button id="sample_editable_1_new" class="btn green">
 													Add New <i class="fa fa-plus"></i>
 													</button>
@@ -87,16 +87,16 @@ active open
 										<input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes"/>
 									</th>
 									<th>
-										 Nama Instansi
+										 Judul Dokumen
 									</th>
 									<th>
-										 Alias
+										 Nama API
 									</th>
 									<th>
-										 Points
+										 Lokasi Dokumen
 									</th>
 									<th>
-										 Joined
+										 Penulis
 									</th>
 									<th>
 										 Status
@@ -104,26 +104,26 @@ active open
 								</tr>
 								</thead>
 								<tbody>
-								@forelse ($instansi as $instansi)
+								@forelse ($data as $data)
 									<tr class="odd gradeX">
 									<td>
 										<input type="checkbox" class="checkboxes" value="1"/>
 									</td>
 									<td>
-										 {{ $instansi->name }}
+										{{ $data->document_title }}
 									</td>
 									<td>
-										{{ $instansi->alias }}
-									</td>
-									<td>
-										 120
+										{{ $data->api->name }}
 									</td>
 									<td class="center">
-										 12.12.2011
+										 {{ $data->address }}
 									</td>
+									<th>
+										 {{ $data->writer }}
+									</th>
 									<td>
-										<span class="label label-sm label-warning">
-										Suspended </span>
+										<span class="label label-sm label-success">
+										available </span>
 									</td>
 								</tr>
 								@empty

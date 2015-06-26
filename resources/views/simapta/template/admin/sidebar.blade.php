@@ -10,44 +10,45 @@
 				<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
 				<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
 				<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-					<li class="start active ">
-						<a href="home">
+					<li class="start @yield('dashboard-active')">
+						<a href="/home">
 						<i class="icon-home"></i>
 						<span class="title">Dashboard</span>
 						@yield('dashboard-selected')
 						</a>
 					</li>
-					<li>
+					<li class="@yield('instansi-active')">
 						<a href="javascript:;">
 						<i class="icon-cloud-upload"></i>
 						<span class="title">Sumber</span>
-						@yield('instansi-selected')
 						<span class="arrow "></span>
+						@yield('instansi-selected')
 						</a>
 						<ul class="sub-menu">
 							<li>
-								<a href="instansi">
+								<a href="/instansi">
 								<i class="icon-briefcase"></i>
 								Instansi</a>
 							</li>
 							<li>
-								<a href="server">
+								<a href="/server">
 								<i class="icon-disc"></i>
 								Server</a>
 							</li>
 							<li>
-								<a href="apis">
+								<a href="/apis">
 								<i class="icon-layers"></i>
-								API/XLS/CSV</a>
+								API</a>
 							</li>
 						</ul>
 					</li>
 
-					<li>
+					<li class="@yield('data-active')">
 						<a href="javascript:;">
 						<i class="icon-disc"></i>
 						<span class="title">Data</span>
 						<span class="arrow "></span>
+						@yield('data-selected')
 						</a>
 						<ul class="sub-menu">
 							<li>

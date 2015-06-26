@@ -7,6 +7,10 @@
 						</li>
 @endsection
 
+@section('dashboard-active')
+active
+@endsection
+
 @section('dashboard-selected')
 <span class="selected"></span>
 @endsection

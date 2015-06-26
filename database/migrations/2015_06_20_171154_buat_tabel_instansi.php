@@ -19,6 +19,7 @@ class BuatTabelInstansi extends Migration
             $table->string('name');
             $table->string('alias');
             $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

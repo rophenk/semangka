@@ -1,5 +1,5 @@
 @extends('simapta.template.admin.master')
-@section('title', 'Instansi' )
+@section('title', 'Server' )
 @section('pagestyle')
 {!! Html::style('simapta/assets/global/css/components-md.csss') !!}
 {!! Html::style('simapta/assets/global/css/plugins-md.css') !!}
@@ -8,7 +8,7 @@
 @section('breadcrumb')
 
 						<li>
-							<a href="/instansi">Instansi</a>
+							<a href="/server">Server</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
 						<li>
@@ -33,49 +33,28 @@ active open
 							<div class="portlet-title">
 								<div class="caption font-green">
 									<i class="icon-pin font-green"></i>
-									<span class="caption-subject bold uppercase"> Data Instansi</span>
-								</div>
-								<div class="actions">
-									<div class="btn-group">
-										<a class="btn btn-sm default dropdown-toggle" href="javascript:;" data-toggle="dropdown">
-										Settings <i class="fa fa-angle-down"></i>
-										</a>
-										<ul class="dropdown-menu pull-right">
-											<li>
-												<a href="javascript:;">
-												<i class="fa fa-pencil"></i> Edit </a>
-											</li>
-											<li>
-												<a href="javascript:;">
-												<i class="fa fa-trash-o"></i> Delete </a>
-											</li>
-											<li>
-												<a href="javascript:;">
-												<i class="fa fa-ban"></i> Ban </a>
-											</li>
-											<li class="divider">
-											</li>
-											<li>
-												<a href="javascript:;">
-												<i class="i"></i> Make admin </a>
-											</li>
-										</ul>
-									</div>
+									<span class="caption-subject bold uppercase"> Data Server</span>
 								</div>
 							</div>
 							<div class="portlet-body form">
-								<form role="form" method="post" action="/instansi/store">
-									{!! csrf_field() !!}
+								<form role="form" method="post" action="">
 									<div class="form-body">
 										<div class="form-group form-md-line-input form-md-floating-label">
 											<input type="text" class="form-control" id="name" name="name">
 											<label for="name">Nama</label>
-											<span class="help-block">Nama Instansi... contoh : Pusat Agribisnis Arsitektur</span>
+											<span class="help-block">Nama Server, contoh : Server #1</span>
 										</div>
 										<div class="form-group form-md-line-input form-md-floating-label">
-											<input type="text" class="form-control" id="alias" name="alias">
-											<label for="alias">Alias</label>
-											<span class="help-block">Sebutan singkat dari Instansi, contoh : PIA</span>
+											<input type="text" class="form-control" id="address">
+											<label for="alias">Address</label>
+											<span class="help-block">Alamat server, contoh : http://pia.pertanian.go.id</span>
+										</div>
+
+										<div class="form-group">
+											<label>Instansi</label>
+											<select class="form-control" name="instansi_id">
+												<option>Pusat Informasi Agribisnis</option>
+											</select>
 										</div>
 									<div class="form-actions noborder">
 										<button type="submit" class="btn blue">Submit</button>

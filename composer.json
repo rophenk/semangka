@@ -11,7 +11,8 @@
         "ramsey/uuid": "2.8.*",
         "moontoast/math": "1.1.*",
         "doctrine/dbal": "2.5.*",
-        "jyggen/curl": "v4.0.0-RC1"
+        "jyggen/curl": "v4.0.0-RC1",
+        "maatwebsite/excel": "~2.0.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

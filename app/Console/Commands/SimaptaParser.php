@@ -18,7 +18,7 @@ class SimaptaParser extends Command
      *
      * @var string
      */
-    protected $description = 'Command description.';
+    protected $description = 'Perintah untuk melakukan parsing dari API yang tersimpan di database.';
 
     /**
      * Create a new command instance.

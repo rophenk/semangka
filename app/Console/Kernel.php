@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\Inspire::class,
         \App\Console\Commands\SimaptaParser::class,
+        \App\Console\Commands\SimaptaCrawler::class,
     ];
 
     /**
@@ -36,6 +37,17 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function simaptaparser()
+    {
+        
+    }
+
+    /**
+     * Define the application's command schedule.
+     *
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @return void
+     */
+    protected function simaptcrawler()
     {
         
     }

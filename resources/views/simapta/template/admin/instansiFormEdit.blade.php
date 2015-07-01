@@ -27,6 +27,9 @@ active open
 
 @section('content')
 
+
+
+@forelse ($instansi as $instansi)
 <br />
 <div class="row">
 					
@@ -39,20 +42,21 @@ active open
 								</div>
 							</div>
 							<div class="portlet-body form">
-								<form role="form" method="post" action="/instansi/store">
-									{!! csrf_field() !!}
+								<form role="form" method="post" action="/instansi/update">
+									<!--{!! csrf_field() !!}-->
 									<div class="form-body">
 										<div class="form-group form-md-line-input form-md-floating-label">
-											<input type="text" class="form-control" id="name" name="name" />
+											<input type="text" class="form-control" id="name" name="name" value="{{ $instansi->name }}">
 											<label for="name">Nama</label>
 											<span class="help-block">Nama Instansi... contoh : Pusat Agribisnis Arsitektur</span>
 										</div>
 										<div class="form-group form-md-line-input form-md-floating-label">
-											<input type="text" class="form-control" id="alias" name="alias" />
+											<input type="text" class="form-control" id="alias" name="alias"  value="{{ $instansi->alias }}">
 											<label for="alias">Alias</label>
 											<span class="help-block">Sebutan singkat dari Instansi, contoh : PIA</span>
 										</div>
 									<div class="form-actions noborder">
+										<input type="hidden" name="uuid" value="{{ $instansi->uuid }}">
 										<button type="submit" class="btn blue">Submit</button>
 										<button type="button" class="btn default">Cancel</button>
 									</div>
@@ -62,6 +66,9 @@ active open
 						<!-- END SAMPLE FORM PORTLET-->
 					
 				</div>
+@empty
+@endforelse
+
 @endsection
 
 @section('pagescript')

@@ -13,7 +13,6 @@
         "doctrine/dbal": "2.5.*",
         "jyggen/curl": "v4.0.0-RC1",
         "maatwebsite/excel": "~2.0.0",
-        "goodby/csv": "*",
         "league/csv": "7.1.*"
     },
     "require-dev": {

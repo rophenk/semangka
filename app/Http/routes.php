@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\Simapta\DataModel;
+use Rhumsaa\Uuid\Uuid;
+use Rhumsaa\Uuid\Exception\UnsatisfiedDependencyException;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +59,9 @@ Route::get('dashboard', function () {
 Route::get('instansi', 'Simapta\InstansiController@index');
 Route::get('instansi/create', 'Simapta\InstansiController@create');
 Route::post('instansi/store', 'Simapta\InstansiController@store');
+Route::get('instansi/edit/{uuid?}', 'Simapta\InstansiController@edit');
+Route::get('instansi/show/{uuid?}', 'Simapta\InstansiController@show');
+Route::post('instansi/update', 'Simapta\InstansiController@update');
 
 /**
  * Route untuk menampilkan data Server
@@ -76,3 +82,33 @@ Route::post('apis/store', 'Simapta\ApiController@store');
  */
 Route::get('data', 'Simapta\DataController@index');
 Route::get('data/create', 'Simapta\DataController@create');
+
+/*Route::get('xlsparser', function () {
+    $results = Excel::load(storage_path().'\app\simapta\temp\tutorial.xls');
+    $api_id = 1;
+    $data = $results->toArray();
+        foreach ($data as $key) {
+            # jika ada judulnya proses ke dalam database
+            if(!empty($key['document_title'])) {
+
+                // Proses input ke dalam database
+
+
+                DB::table('data')->insert([
+                	'document_title'=> $key['document_title'],
+                	'uuid'			=> Uuid::uuid4(),
+                	'api_id'		=> '1',
+                	'address'		=> $key['address'],
+                	'availability' 	=> 'unavailable'
+                ]);
+                
+                echo $key['document_title']."\n";
+                echo "Data tersimpan di database"."\n";
+            } else {
+
+                echo "Document_title Kosong"."\n";
+            }
+
+            
+        }
+});*/

@@ -60,7 +60,7 @@ class InstansiController extends Controller
      */
     public function show($id)
     {
-        //
+        // 
     }
 
     /**
@@ -69,9 +69,14 @@ class InstansiController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($uuid)
     {
-        //
+        // Tampilka data Instansi
+        $instansi = InstansiModel::where('uuid', $uuid)
+                                    ->get();
+
+        //Tampilkan Form yang terisi data
+        return view('simapta.template.admin.instansiFormEdit', ['instansi' => $instansi]);
     }
 
     /**
@@ -80,9 +85,15 @@ class InstansiController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request)
     {
-        //
+        //// Validate the request...
+        InstansiModel::where('uuid' ,$request->uuid)
+        ->update([
+            'name' => $request->name, 
+            'alias' => $request->alias 
+            ]);
+        return redirect("/instansi");
     }
 
     /**

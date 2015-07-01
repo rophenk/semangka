@@ -9,6 +9,8 @@ use Rhumsaa\Uuid\Uuid;
 use Rhumsaa\Uuid\Exception\UnsatisfiedDependencyException;
 use League\Csv\Reader;
 use League\Csv\Writer;
+use Excel;
+use DB;
 use App\Models\Simapta\ApiModel;
 use App\Models\Simapta\DataModel;
 
@@ -56,6 +58,14 @@ class SimaptaParser extends Command
         
         return $data;
     }
+
+    public function downloadAPIFile($url, $localfile)
+    {
+        $file = file_get_contents($url);
+        $save = file_put_contents($localfile, $url);
+    }
+
+    
 
     /**
      * [curl_get_last_modified description]
@@ -136,25 +146,27 @@ class SimaptaParser extends Command
 
                 // Proses input ke dalam database
                 
-                $dataParsed->uuid           = Uuid::uuid4();
-                $dataParsed->api_id         = $api_id;
-                $dataParsed->document_title = $key['document_title'];
-                $dataParsed->writer         = $key['writer'];
-                $dataParsed->description    = $key['description'];
-                $dataParsed->publisher      = $key['publisher'];
-                $dataParsed->year_published = $key['year_published'];
-                $dataParsed->file_type      = $key['file_type'];
-                $dataParsed->pages          = $key['pages'];
-                $dataParsed->isbn           = $key['isbn'];
-                $dataParsed->document_size  = $key['document_size'];
-                $dataParsed->cover_image    = $key['cover_image'];
-                $dataParsed->address        = $key['address'];
-                $dataParsed->availability   = 'unavailable';
-                $dataParsed->save();
+                DB::table('data')->insert([
+                    'document_title'=> $key['document_title'],
+                    'uuid'          => Uuid::uuid4(),
+                    'api_id'        => $api_id,
+                    'writer'        => $key['writer'],
+                    'description'   => $key['description'],
+                    'publisher'     => $key['publisher'],
+                    'year_published'=> $key['year_published'],
+                    'file_type'     => $key['file_type'],
+                    'pages'         => $key['pages'],
+                    'isbn'          => $key['isbn'],
+                    'document_size' => $key['document_size'],
+                    'cover_image'   => $key['cover_image'],
+                    'address'       => $key['address'],
+                    'availability'  => 'unavailable',
+                    'created_at'    => date("Y-m-d H:i:s")
+                ]);
 
-               echo "Data tersimpan di database"."\n";
+                
                 echo $key['document_title']."\n";
-
+                echo "Data tersimpan di database"."\n";
             } else {
 
                 echo "Document_title Kosong"."\n";
@@ -162,6 +174,45 @@ class SimaptaParser extends Command
         }
     }
         
+
+    public static function importXLS($file, $api_id)
+    {
+
+        $results = Excel::load($file);
+
+        $data = $results->toArray();
+        foreach ($data as $key) {
+            # jika ada judulnya proses ke dalam database
+            if(!empty($key['document_title'])) {
+
+                // Proses input ke dalam database
+                
+                 DB::table('data')->insert([
+                    'document_title'=> $key['document_title'],
+                    'uuid'          => Uuid::uuid4(),
+                    'api_id'        => $api_id,
+                    'writer'        => $key['writer'],
+                    'description'   => $key['description'],
+                    'publisher'     => $key['publisher'],
+                    'year_published'=> $key['year_published'],
+                    'file_type'     => $key['file_type'],
+                    'pages'         => $key['pages'],
+                    'isbn'          => $key['isbn'],
+                    'document_size' => $key['document_size'],
+                    'cover_image'   => $key['cover_image'],
+                    'address'       => $key['address'],
+                    'availability'  => 'unavailable'
+                ]);
+                
+                echo $key['document_title']."\n";
+                echo "Data tersimpan di database"."\n";
+            } else {
+
+                echo "Document_title Kosong"."\n";
+            }
+        }
+
+    }
 
     /**
      * Execute the console command.
@@ -218,23 +269,36 @@ class SimaptaParser extends Command
                     // Jika last modified berbeda, ambil data dari remote file lalu simpan di local
                     $contents = SimaptaParser::curl_get_data($url);
                     Storage::disk('local')->append('simapta/temp/api.csv', $contents);
-
                     // Parsing file csv lokal
                     $csvfile = storage_path().'\app\simapta\temp\api.csv';
-
-
+                    
                     // hapus dulu data yang didapat dari api lama dari database
-                    //$deletedRows = DataModel::where('api_id', '=', $id)->delete();
-
+                    $deletedRows = DataModel::where('api_id', '=', $id)->delete();
                     // Populasi table data dengan isi dari manifest api
                     $csv = SimaptaParser::importCSV($csvfile, $id);
                     
                     $output .= $csv."\n";
 
+
+                    // Parsing file remote xls
+                    //$xlsfile = $url;
+                    //$xlslokal = storage_path().'\app\simapta\temp\tutorial.xls';
+
+                    //SimaptaParser::downloadAPIFile($url, $xlslokal);
+
+                    // hapus dulu data yang didapat dari api lama dari database
+                    //$deletedRows = DataModel::where('api_id', '=', $id)->delete();
+
+                    // Populasi table data dengan isi dari manifest api
+                    //$csv = SimaptaParser::importCSV($xlslokal, $id);
+                    //$xls = SimaptaParser::importXLS($xlslokal, $id);
+                    
+                    //$output .= $xls."\n";
+
                     // Update Last Modified menjadi sesuai dengan remote file
                     $apidata = ApiModel::find($id);
                     $apidata->last_modified = $last_modified;
-                    //$apidata->save();
+                    $apidata->save();
                     
                     // hapus api.csv temporary file
                     Storage::delete('simapta/temp/api.csv');
@@ -246,10 +310,14 @@ class SimaptaParser extends Command
 
             $output .= "======================="."\n";
 
-            echo $output;
+            
 
         }
 
-        Storage::disk('local')->append('simapta/logs/parser.log', $output);
+        Storage::disk('local')->append('simapta/logs/'.date('Y').'/'.date('m').'/'.date('d').'-parser.log', $output);
+
+        return $output;
+
+        
     }
 }

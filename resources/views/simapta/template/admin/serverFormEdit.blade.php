@@ -1,5 +1,5 @@
 @extends('simapta.template.admin.master')
-@section('title', 'Instansi' )
+@section('title', 'Server' )
 @section('pagestyle')
 {!! Html::style('simapta/assets/global/css/components-md.csss') !!}
 {!! Html::style('simapta/assets/global/css/plugins-md.css') !!}
@@ -8,7 +8,7 @@
 @section('breadcrumb')
 
 						<li>
-							<a href="/instansi">Instansi</a>
+							<a href="/server">Server</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
 						<li>
@@ -24,12 +24,8 @@ active open
 <span class="selected"></span>
 @endsection
 
-
 @section('content')
-
-
-
-@forelse ($instansi as $instansi)
+@forelse ($server as $server)
 <br />
 <div class="row">
 					
@@ -38,25 +34,35 @@ active open
 							<div class="portlet-title">
 								<div class="caption font-green">
 									<i class="icon-pin font-green"></i>
-									<span class="caption-subject bold uppercase"> Data Instansi</span>
+									<span class="caption-subject bold uppercase"> Data Server</span>
 								</div>
 							</div>
 							<div class="portlet-body form">
-								<form role="form" method="post" action="/instansi/update">
+								<form role="form" method="post" action="/server/update">
 									<div class="form-body">
 										<div class="form-group form-md-line-input form-md-floating-label">
-											<input type="text" class="form-control" id="name" name="name" value="{{ $instansi->name }}">
+											<input type="text" class="form-control" id="name" name="name" value="{{ $server->name }}">
 											<label for="name">Nama</label>
-											<span class="help-block">Nama Instansi... contoh : Pusat Agribisnis Arsitektur</span>
+											<span class="help-block">Nama Server, contoh : Server #1</span>
 										</div>
 										<div class="form-group form-md-line-input form-md-floating-label">
-											<input type="text" class="form-control" id="alias" name="alias"  value="{{ $instansi->alias }}">
-											<label for="alias">Alias</label>
-											<span class="help-block">Sebutan singkat dari Instansi, contoh : PIA</span>
+											<input type="text" class="form-control" id="address" name="address" value="{{ $server->address }}">
+											<label for="alias">Address</label>
+											<span class="help-block">Alamat server, contoh : http://pia.pertanian.go.id</span>
+										</div>
+										<div class="form-group">
+											<label>Instansi</label>
+											<select class="form-control" name="instansi_id">
+												@forelse ($instansi_options as $instansi)
+
+														<option value="{{ $instansi->id }}">{{ $instansi->name }}</option>
+												@empty
+														<option>Belum ada data Instansi</option>
+												@endforelse
+											</select>
 										</div>
 									<div class="form-actions noborder">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<input type="hidden" name="uuid" value="{{ $instansi->uuid }}">
 										<button type="submit" class="btn blue">Submit</button>
 										<button type="button" class="btn default">Cancel</button>
 									</div>
@@ -68,7 +74,6 @@ active open
 				</div>
 @empty
 @endforelse
-
 @endsection
 
 @section('pagescript')

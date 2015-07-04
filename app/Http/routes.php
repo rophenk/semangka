@@ -22,9 +22,10 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Simapta\SearchController@index');
+Route::get('/index', 'Simapta\SearchController@index');
+Route::get('show/{uuid?}', 'Simapta\SearchController@show');
+Route::post('/result', 'Simapta\SearchController@result');
 
 Route::get('home', function (Request $request) {
 	if ($request-> user()) {
@@ -69,6 +70,8 @@ Route::post('instansi/update', 'Simapta\InstansiController@update');
 Route::get('server', 'Simapta\ServerController@index');
 Route::get('server/create', 'Simapta\ServerController@create');
 Route::post('server/store', 'Simapta\ServerController@store');
+Route::get('server/edit/{uuid?}', 'Simapta\ServerController@edit');
+Route::post('server/update', 'Simapta\ServerController@update');
 
 /**
  * Route untuk menampilkan data API/XLS
@@ -82,33 +85,3 @@ Route::post('apis/store', 'Simapta\ApiController@store');
  */
 Route::get('data', 'Simapta\DataController@index');
 Route::get('data/create', 'Simapta\DataController@create');
-
-/*Route::get('xlsparser', function () {
-    $results = Excel::load(storage_path().'\app\simapta\temp\tutorial.xls');
-    $api_id = 1;
-    $data = $results->toArray();
-        foreach ($data as $key) {
-            # jika ada judulnya proses ke dalam database
-            if(!empty($key['document_title'])) {
-
-                // Proses input ke dalam database
-
-
-                DB::table('data')->insert([
-                	'document_title'=> $key['document_title'],
-                	'uuid'			=> Uuid::uuid4(),
-                	'api_id'		=> '1',
-                	'address'		=> $key['address'],
-                	'availability' 	=> 'unavailable'
-                ]);
-                
-                echo $key['document_title']."\n";
-                echo "Data tersimpan di database"."\n";
-            } else {
-
-                echo "Document_title Kosong"."\n";
-            }
-
-            
-        }
-});*/

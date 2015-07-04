@@ -58,7 +58,7 @@ active open
 												</a>
 											</div>
 										</div>
-										<div class="col-md-6">
+										<!--<div class="col-md-6">
 											<div class="btn-group pull-right">
 												<button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
 												</button>
@@ -77,7 +77,7 @@ active open
 													</li>
 												</ul>
 											</div>
-										</div>
+										</div>-->
 									</div>
 								</div>
 								<table class="table table-striped table-bordered table-hover" id="sample_1">
@@ -122,8 +122,11 @@ active open
 										 &nbsp;
 									</th>
 									<td>
-										<span class="label label-sm label-warning">
-										Suspended </span>
+										<a href="/server/edit/{{ $server->uuid }}">
+											<button id="editbuton" class="btn green">
+											Edit <i class="fa fa-edit"></i>
+											</button>
+										</a>
 									</td>
 								</tr>
 								@empty

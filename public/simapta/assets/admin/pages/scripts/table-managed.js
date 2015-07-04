@@ -40,11 +40,7 @@ var TableManaged = function () {
                 "orderable": true
             }, {
                 "orderable": false
-            }, {
-                "orderable": false
-            }, {
-                "orderable": true
-            }, {
+            },  {
                 "orderable": false
             }],
             "lengthMenu": [

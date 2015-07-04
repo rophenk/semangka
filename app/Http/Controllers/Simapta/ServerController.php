@@ -77,9 +77,16 @@ class ServerController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($uuid)
     {
-        //
+        // Tampilka data Instansi
+        $server = ServerModel::where('uuid', $uuid)
+                                    ->get();
+
+        $instansi_options = InstansiModel::all();
+
+        //Tampilkan Form yang terisi data
+        return view('simapta.template.admin.serverFormEdit', ['server' => $server, 'instansi_options' => $instansi_options]);
     }
 
     /**
@@ -88,9 +95,16 @@ class ServerController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request)
     {
-        //
+        //// Validate the request...
+        ServerModel::where('uuid' ,$request->uuid)
+        ->update([
+            'instansi_id' => $request->instansi_id, 
+            'name' => $request->name, 
+            'address' => $request->address 
+            ]);
+        return redirect("/server");
     }
 
     /**

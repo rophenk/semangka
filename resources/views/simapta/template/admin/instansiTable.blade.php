@@ -73,13 +73,7 @@ active open
 										 Alias
 									</th>
 									<th>
-										 Points
-									</th>
-									<th>
-										 Joined
-									</th>
-									<th>
-										 Status
+										 Option
 									</th>
 								</tr>
 								</thead>
@@ -94,12 +88,6 @@ active open
 									</td>
 									<td>
 										{{ $instansi->alias }}
-									</td>
-									<td>
-										 120
-									</td>
-									<td class="center">
-										 12.12.2011
 									</td>
 									<td>
 										<a href="/instansi/edit/{{ $instansi->uuid }}">

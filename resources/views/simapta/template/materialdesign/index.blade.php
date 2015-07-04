@@ -1,0 +1,1 @@
+@extends('simapta.template.materialdesign.master')

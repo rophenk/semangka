@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Simapta\ServerModel;
 use App\Models\Simapta\InstansiModel;
+use DB;
 
 class ServerController extends Controller
 {
@@ -110,11 +111,13 @@ class ServerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $uuid
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($uuid)
     {
-        //
+        //Menghapus data Server
+        DB::table('server')->where('uuid', '=' ,$uuid)->delete();
+        return redirect("/server");
     }
 }

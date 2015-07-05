@@ -72,7 +72,7 @@ active open
 									<th>
 										 Alias
 									</th>
-									<th>
+									<th align="right">
 										 Option
 									</th>
 								</tr>
@@ -89,10 +89,15 @@ active open
 									<td>
 										{{ $instansi->alias }}
 									</td>
-									<td>
+									<td align="right">
 										<a href="/instansi/edit/{{ $instansi->uuid }}">
 											<button id="editbuton" class="btn green">
 											Edit <i class="fa fa-edit"></i>
+											</button>
+										</a>
+										<a href="/instansi/destroy/{{ $instansi->uuid }}" onclick="if(!confirm('Anda yakin akan menghapus data ini ?')){return false;};">
+											<button id="editbuton" class="btn green">
+											Delete <i class="fa fa-close"></i>
 											</button>
 										</a>
 									</td>

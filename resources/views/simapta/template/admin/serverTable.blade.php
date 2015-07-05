@@ -96,10 +96,7 @@ active open
 										 Alamat Server
 									</th>
 									<th>
-										 Etc
-									</th>
-									<th>
-										 Status
+										 Option
 									</th>
 								</tr>
 								</thead>
@@ -118,13 +115,15 @@ active open
 									<td class="center">
 										 {{ $server->address }}
 									</td>
-									<th>
-										 &nbsp;
-									</th>
 									<td>
 										<a href="/server/edit/{{ $server->uuid }}">
 											<button id="editbuton" class="btn green">
 											Edit <i class="fa fa-edit"></i>
+											</button>
+										</a>
+										<a href="/server/destroy/{{ $server->uuid }}" onclick="if(!confirm('Anda yakin akan menghapus data ini ?')){return false;};">
+											<button id="destroybuton" class="btn green">
+											Delete <i class="fa fa-close"></i>
 											</button>
 										</a>
 									</td>

@@ -63,6 +63,7 @@ Route::post('instansi/store', 'Simapta\InstansiController@store');
 Route::get('instansi/edit/{uuid?}', 'Simapta\InstansiController@edit');
 Route::get('instansi/show/{uuid?}', 'Simapta\InstansiController@show');
 Route::post('instansi/update', 'Simapta\InstansiController@update');
+Route::get('instansi/destroy/{uuid?}', 'Simapta\InstansiController@destroy');
 
 /**
  * Route untuk menampilkan data Server
@@ -72,6 +73,7 @@ Route::get('server/create', 'Simapta\ServerController@create');
 Route::post('server/store', 'Simapta\ServerController@store');
 Route::get('server/edit/{uuid?}', 'Simapta\ServerController@edit');
 Route::post('server/update', 'Simapta\ServerController@update');
+Route::get('server/destroy/{uuid?}', 'Simapta\ServerController@destroy');
 
 /**
  * Route untuk menampilkan data API/XLS
@@ -79,9 +81,11 @@ Route::post('server/update', 'Simapta\ServerController@update');
 Route::get('apis', 'Simapta\ApiController@index');
 Route::get('apis/create', 'Simapta\ApiController@create');
 Route::post('apis/store', 'Simapta\ApiController@store');
+Route::get('apis/edit/{uuid?}', 'Simapta\ApiController@edit');
+Route::post('apis/update', 'Simapta\ApiController@update');
+Route::get('apis/destroy/{uuid?}', 'Simapta\ApiController@destroy');
 
 /**
  * Route untuk menampilkan data konten manifest yang didapat dari API/XLS
  */
 Route::get('data', 'Simapta\DataController@index');
-Route::get('data/create', 'Simapta\DataController@create');

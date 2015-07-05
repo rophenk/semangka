@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Simapta\ApiModel;
 use App\Models\Simapta\ServerModel;
+use DB;
 
 class ApiController extends Controller
 {
@@ -73,9 +74,16 @@ class ApiController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($uuid)
     {
-        //
+        // Tampilkan data API
+        $apis = ApiModel::where('uuid', $uuid)
+                                    ->get();
+
+        $server_options = ServerModel::all();
+
+        //Tampilkan Form yang terisi data
+        return view('simapta.template.admin.apisFormEdit', ['apis' => $apis, 'server_options' => $server_options]);
     }
 
     /**
@@ -84,9 +92,17 @@ class ApiController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request)
     {
-        //
+        // Validate the request...
+        $updateAPI = ApiModel::where('uuid' ,$request->uuid)
+        ->update([
+            'server_id' => $request->server_id, 
+            'name' => $request->name, 
+            'type' => $request->type, 
+            'address' => $request->address 
+            ]);
+        return redirect("/apis");
     }
 
     /**

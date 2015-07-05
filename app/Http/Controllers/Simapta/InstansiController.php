@@ -8,6 +8,7 @@ use App\AuthTraits\RedirectsUsers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Simapta\InstansiModel;
+use DB;
 
 class InstansiController extends Controller
 {
@@ -102,8 +103,10 @@ class InstansiController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($uuid)
     {
-        //
+        // Menghapus data Instansi
+        DB::table('instansi')->where('uuid', '=' ,$uuid)->delete();
+        return redirect("/instansi");
     }
 }

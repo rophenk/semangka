@@ -47,7 +47,7 @@ active open
 								</div>
 							</div>
 							<div class="portlet-body">
-								<div class="table-toolbar">
+								<!--<div class="table-toolbar">
 									<div class="row">
 										<div class="col-md-6">
 											<div class="btn-group">
@@ -79,7 +79,7 @@ active open
 											</div>
 										</div>
 									</div>
-								</div>
+								</div>-->
 								<table class="table table-striped table-bordered table-hover" id="sample_1">
 								<thead>
 								<tr>

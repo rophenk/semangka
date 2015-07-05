@@ -32,7 +32,7 @@ active open
 						<div class="portlet box grey-cascade">
 							<div class="portlet-title">
 								<div class="caption">
-									<i class="fa fa-globe"></i>Server Terdaftar
+									<i class="fa fa-globe"></i>API Terdaftar
 								</div>
 								<div class="tools">
 									<a href="javascript:;" class="collapse">
@@ -98,7 +98,7 @@ active open
 										 Tipe API
 									</th>
 									<th>
-										 Status
+										 Option
 									</th>
 								</tr>
 								</thead>
@@ -121,8 +121,11 @@ active open
 										 {{ $api->type }}
 									</th>
 									<td>
-										<span class="label label-sm label-success">
-										available </span>
+										<a href="/apis/edit/{{ $api->uuid }}">
+											<button id="editbuton" class="btn green">
+											Edit <i class="fa fa-edit"></i>
+											</button>
+										</a>
 									</td>
 								</tr>
 								@empty

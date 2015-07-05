@@ -1,5 +1,5 @@
 @extends('simapta.template.admin.master')
-@section('title', 'Server' )
+@section('title', 'API' )
 @section('pagestyle')
 {!! Html::style('simapta/assets/global/css/components-md.csss') !!}
 {!! Html::style('simapta/assets/global/css/plugins-md.css') !!}
@@ -8,7 +8,7 @@
 @section('breadcrumb')
 
 						<li>
-							<a href="/server">Server</a>
+							<a href="/apis">API</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
 						<li>
@@ -25,7 +25,7 @@ active open
 @endsection
 
 @section('content')
-@forelse ($server as $server)
+@forelse ($apis as $api)
 <br />
 <div class="row">
 					
@@ -34,29 +34,52 @@ active open
 							<div class="portlet-title">
 								<div class="caption font-green">
 									<i class="icon-pin font-green"></i>
-									<span class="caption-subject bold uppercase"> Data Server</span>
+									<span class="caption-subject bold uppercase"> Data API</span>
 								</div>
 							</div>
 							<div class="portlet-body form">
-								<form role="form" method="post" action="/server/update">
+								<form role="form" method="post" action="/apis/update">
+									{!! csrf_field() !!}
 									<div class="form-body">
 										<div class="form-group form-md-line-input form-md-floating-label">
-											<input type="text" class="form-control" id="name" name="name" value="{{ $server->name }}">
+											<input type="text" class="form-control" id="name" name="name" value="{{ $api->name }}">
 											<label for="name">Nama</label>
-											<span class="help-block">Nama Server, contoh : Server #1</span>
+											<span class="help-block">Nama API, contoh : Budidaya Holtikultura</span>
 										</div>
 										<div class="form-group form-md-line-input form-md-floating-label">
-											<input type="text" class="form-control" id="address" name="address" value="{{ $server->address }}">
+											<input type="text" class="form-control" id="address" name="address" value="{{ $api->address }}">
 											<label for="alias">Address</label>
-											<span class="help-block">Alamat server, contoh : http://pia.pertanian.go.id</span>
+											<span class="help-block">Alamat server, contoh : http://pia.pertanian.go.id/simapta/api/holtikultura.csv</span>
 										</div>
 										<div class="form-group">
-											<label>Instansi</label>
-											<select class="form-control" name="instansi_id">
-												@forelse ($instansi_options as $instansi)
-
-													<?php
-													if($instansi->id === $server->instansi_id) {
+											<label>Type</label>
+											<select class="form-control" name="type">
+												<?php
+												if($api->type === "CSV"){
+													$csv = ' selected="yes"';
+													$json = '';
+													$xml = '';
+												} elseif($api->type === "JSON") {
+													$json = ' selected="yes"';
+													$csv = '';
+													$xml = '';
+												} elseif($api->type === "XML") {
+													$xml = ' selected="yes"';
+													$json = '';
+													$csv = '';
+												}
+												?>
+												<option value="CSV"<?php echo $csv; ?>>CSV</option>
+												<option value="JSON"<?php echo $json; ?>>JSON</option>
+												<option value="XML"<?php echo $xml; ?>>XML</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label>Server</label>
+											<select class="form-control" name="server_id">
+												@forelse ($server_options as $server)
+												<?php
+													if($server->id === $api->server_id) {
 
 														$selected = ' selected="yes"';
 
@@ -66,16 +89,15 @@ active open
 
 													}
 													?>
-
-														<option value="{{ $instansi->id }}"<?php echo $selected; ?>>{{ $instansi->name }}</option>
+													<option value="{{ $server->id }}"<?php echo $selected; ?>>{{ $server->name }}</option>
 												@empty
-														<option>Belum ada data Instansi</option>
+													<option>Belum ada data Server</option>
 												@endforelse
 											</select>
 										</div>
 									<div class="form-actions noborder">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<input type="hidden" name="uuid" value="{{ $server->uuid }}">
+										<input type="hidden" name="uuid" value="{{ $api->uuid }}">
 										<button type="submit" class="btn blue">Submit</button>
 										<button type="button" class="btn default">Cancel</button>
 									</div>

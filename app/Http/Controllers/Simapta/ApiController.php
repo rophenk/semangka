@@ -111,8 +111,11 @@ class ApiController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($uuid)
     {
-        //
+        //Menghapus data API
+        DB::table('api')->where('uuid', '=' ,$uuid)->delete();
+        return redirect("/apis");
+    }
     }
 }

@@ -126,6 +126,11 @@ active open
 											Edit <i class="fa fa-edit"></i>
 											</button>
 										</a>
+										<a href="/apis/destroy/{{ $api->uuid }}" onclick="if(!confirm('Anda yakin akan menghapus data ini ?')){return false;};">
+											<button id="deletebuton" class="btn green">
+											Delete <i class="fa fa-close"></i>
+											</button>
+										</a>
 									</td>
 								</tr>
 								@empty

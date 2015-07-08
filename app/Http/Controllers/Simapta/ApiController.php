@@ -117,5 +117,4 @@ class ApiController extends Controller
         DB::table('api')->where('uuid', '=' ,$uuid)->delete();
         return redirect("/apis");
     }
-    }
 }

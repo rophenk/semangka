@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\AuthTraits\RedirectsUsers;
-
+use Session;
 
 class LoginController extends Controller
 {
@@ -89,7 +89,7 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-
+        Session::flush();
         return redirect(property_exists($this, 'redirectAfterLogout') ? 
         $this->redirectAfterLogout : '/');
     }

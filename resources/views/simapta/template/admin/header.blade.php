@@ -402,15 +402,15 @@
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 						<img alt="" class="img-circle" src="{{ URL::asset('simapta/assets/admin/layout2/img/avatar3_small.jpg') }}"/>
 						<span class="username username-hide-on-mobile">
-						Nick </span>
+						Administrator </span>
 						<i class="fa fa-angle-down"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
-							<li>
-								<a href="extra_profile.html">
+							<!--<li>
+								<a href="#">
 								<i class="icon-user"></i> My Profile </a>
 							</li>
-							<!--<li>
+							<li>
 								<a href="page_calendar.html">
 								<i class="icon-calendar"></i> My Calendar </a>
 							</li>

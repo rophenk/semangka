@@ -57,7 +57,7 @@
 							</li>
 						</ul>
 					</li>
-					<li>
+					<!--<li>
 						<a href="javascript:;">
 						<i class="icon-user"></i>
 						<span class="title">Users</span>
@@ -69,7 +69,7 @@
 								Manage Users</a>
 							</li>
 						</ul>
-					</li>
+					</li>-->
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>

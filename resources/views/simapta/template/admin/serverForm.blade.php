@@ -1,7 +1,7 @@
 @extends('simapta.template.admin.master')
 @section('title', 'Server' )
 @section('pagestyle')
-{!! Html::style('simapta/assets/global/css/components-md.csss') !!}
+{!! Html::style('simapta/assets/global/css/components-md.css') !!}
 {!! Html::style('simapta/assets/global/css/plugins-md.css') !!}
 @endsection
 

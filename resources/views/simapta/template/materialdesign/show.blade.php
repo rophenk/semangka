@@ -9,7 +9,6 @@
     <!-- CSS  -->
     {!! Html::style('simapta/md/css/materialize.css') !!}
     {!! Html::style('simapta/md/css/style.css') !!}
-    {!! Html::style('simapta/md/css/modernizr.css') !!}
     {!! Html::style('simapta/md/css/font-awesome.min.css') !!}
     {!! Html::script('simapta/md/js/modernizr.js') !!}<!-- Modernizr -->
 </head>

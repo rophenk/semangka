@@ -1,7 +1,7 @@
 @extends('simapta.template.admin.master')
 @section('title', 'API/XML/CSV' )
 @section('pagestyle')
-{!! Html::style('simapta/assets/assets/global/plugins/select2/select2.css') !!}
+{!! Html::style('simapta/assets/global/plugins/select2/select2.css') !!}
 {!! Html::style('simapta/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') !!}
 @endsection
 

@@ -22,6 +22,8 @@ class SearchController extends Controller
         // Menampilkan 6 Data Terbaru
         $data = DB::table('data')
                     ->orderBy('created_at', 'desc' )
+                    ->skip(0)
+                    ->take(3)
                     ->get();
 
         $instansi = DB::table('instansi')
@@ -38,7 +40,9 @@ class SearchController extends Controller
     {
         // Menampilkan 6 Data Terbaru
         $data = DB::table('data')
-                    ->orderBy('created_at', 'desc' )
+                    ->orderBy('created_at', 'desc')
+                    ->skip(0)
+                    ->take(3)
                     ->get();
         return view('simapta.template.materialdesign.latest', ['data' => $data]);
     }

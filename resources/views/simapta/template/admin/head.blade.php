@@ -13,15 +13,15 @@
 {!! Html::style('simapta/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') !!}
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-{!! Html::style('assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') !!}
-{!! Html::style('assets/global/plugins/fullcalendar/fullcalendar.min.css') !!}
-{!! Html::style('assets/global/plugins/jqvmap/jqvmap/jqvmap.css') !!}
+{!! Html::style('simapta/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') !!}
+{!! Html::style('simapta/assets/global/plugins/fullcalendar/fullcalendar.min.css') !!}
+{!! Html::style('simapta/assets/global/plugins/jqvmap/jqvmap/jqvmap.css') !!}
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 <!-- BEGIN PAGE LEVEL STYLES -->
 @yield('pagestyle')
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN PAGE STYLES -->
-{!! Html::style('assets/admin/pages/css/tasks.css') !!}
+{!! Html::style('simapta/assets/admin/pages/css/tasks.css') !!}
 <!-- END PAGE STYLES -->
 <!-- BEGIN THEME STYLES -->
 <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->

@@ -19,9 +19,9 @@ class SearchController extends Controller
     public function index()
     {
         // Menampilkan Halaman Index
-        // Menampilkan 6 Data Terbaru
+        // Menampilkan 3 Data Terbaru
         $data = DB::table('data')
-                    ->orderBy('created_at', 'desc' )
+                    ->orderBy('id', 'desc' )
                     ->skip(0)
                     ->take(3)
                     ->get();
@@ -38,9 +38,9 @@ class SearchController extends Controller
      */
     public function latest()
     {
-        // Menampilkan 6 Data Terbaru
+        // Menampilkan 3 Data Terbaru
         $data = DB::table('data')
-                    ->orderBy('created_at', 'desc')
+                    ->orderBy('id', 'desc')
                     ->skip(0)
                     ->take(3)
                     ->get();

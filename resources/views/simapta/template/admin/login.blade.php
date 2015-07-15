@@ -412,7 +412,7 @@ $path = app_path();
 	<!-- END REGISTRATION FORM -->
 </div>
 <div class="copyright">
-	 2014 © Metronic. Admin Dashboard Template.
+	 2015 © Kementerian Pertanian Indonesia.
 </div>
 <!-- END LOGIN -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->

@@ -21,14 +21,14 @@ active
 					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 						<a class="dashboard-stat dashboard-stat-light blue-soft" href="javascript:;">
 						<div class="visual">
-							<i class="fa fa-comments"></i>
+							<i class="fa fa-file"></i>
 						</div>
 						<div class="details">
 							<div class="number">
-								 1349
+								 10
 							</div>
 							<div class="desc">
-								 New Feedbacks
+								 Dokumen terindex
 							</div>
 						</div>
 						</a>
@@ -36,14 +36,14 @@ active
 					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 						<a class="dashboard-stat dashboard-stat-light red-soft" href="javascript:;">
 						<div class="visual">
-							<i class="fa fa-trophy"></i>
+							<i class="fa fa-code"></i>
 						</div>
 						<div class="details">
 							<div class="number">
-								 12,5M$
+								 1
 							</div>
 							<div class="desc">
-								 Total Profit
+								 API
 							</div>
 						</div>
 						</a>
@@ -51,14 +51,14 @@ active
 					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 						<a class="dashboard-stat dashboard-stat-light green-soft" href="javascript:;">
 						<div class="visual">
-							<i class="fa fa-shopping-cart"></i>
+							<i class="fa fa-desktop"></i>
 						</div>
 						<div class="details">
 							<div class="number">
-								 549
+								 1
 							</div>
 							<div class="desc">
-								 New Orders
+								 Server
 							</div>
 						</div>
 						</a>
@@ -70,10 +70,10 @@ active
 						</div>
 						<div class="details">
 							<div class="number">
-								 +89%
+								 1
 							</div>
 							<div class="desc">
-								 Brand Popularity
+								 Instansi Kontributor
 							</div>
 						</div>
 						</a>

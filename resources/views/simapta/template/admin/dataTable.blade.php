@@ -80,7 +80,7 @@ active open
 										</div>
 									</div>
 								</div>-->
-								<table class="table table-striped table-bordered table-hover" id="sample_1">
+								<table class="table table-striped table-bordered table-hover" id="sample_1" style="width: 100%;">
 								<thead>
 								<tr>
 									<th class="table-checkbox">
@@ -92,7 +92,7 @@ active open
 									<th>
 										 Nama API
 									</th>
-									<th>
+									<th width="200px">
 										 Lokasi Dokumen
 									</th>
 									<th>
@@ -115,8 +115,10 @@ active open
 									<td>
 										{{ $data->api->name }}
 									</td>
-									<td class="center">
+									<td>
+										<div style="word-break:break-all;">
 										 {{ $data->address }}
+										</div>
 									</td>
 									<th>
 										 {{ $data->writer }}

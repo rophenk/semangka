@@ -9,7 +9,10 @@
                         <img class="activator" src="img/project1.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ $data->document_title }} <i class="mdi-navigation-more-vert right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">
+                            <div class="title" style="width:100%; height:50px;">
+                            {{ $data->document_title }}
+                            </div> <i class="mdi-navigation-more-vert right"></i></span>
                         <p><a href="#">Project link</a></p>
                     </div>
                     <div class="card-reveal">

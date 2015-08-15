@@ -15,14 +15,30 @@ class InstansiController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Response Display View
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Tampilka data Instansi
-        $instansi = InstansiModel::all();
 
-        return view('simapta.template.admin.instansiTable', ['instansi' => $instansi]);
+        $user       = $request->user();
+        $role_id    = $request->user()->role_id;
+
+        if($role_id <= 2) {
+
+            // Tampilkan semua data Instansi
+             $instansi = InstansiModel::all();
+
+        } else {
+
+            $instansi_id = $request->user()->instansi_id;
+
+            // Tampilkan semua data Instansi
+             $instansi = InstansiModel::where('id', $instansi_id)
+                         ->get();
+
+        }
+
+        return view('simapta.template.admin.instansiTable', ['instansi' => $instansi, 'user' => $user, 'role_id' => $role_id]);
     }
 
     /**
@@ -30,10 +46,11 @@ class InstansiController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $user       = $request->user();
         // Tampilkan Form Instansi
-        return view('simapta.template.admin.instansiForm');
+        return view('simapta.template.admin.instansiForm', ['user' => $user]);
     }
 
     /**
@@ -70,14 +87,15 @@ class InstansiController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($uuid)
+    public function edit(Request $request)
     {
+        $user       = $request->user();
         // Tampilka data Instansi
-        $instansi = InstansiModel::where('uuid', $uuid)
+        $instansi = InstansiModel::where('uuid', $request->uuid)
                                     ->get();
 
         //Tampilkan Form yang terisi data
-        return view('simapta.template.admin.instansiFormEdit', ['instansi' => $instansi]);
+        return view('simapta.template.admin.instansiFormEdit', ['instansi' => $instansi, 'user' => $user]);
     }
 
     /**
@@ -100,8 +118,8 @@ class InstansiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param  uuid  $uuid
+     * @return Response Redirect to route
      */
     public function destroy($uuid)
     {
@@ -109,4 +127,5 @@ class InstansiController extends Controller
         DB::table('instansi')->where('uuid', '=' ,$uuid)->delete();
         return redirect("/instansi");
     }
+
 }

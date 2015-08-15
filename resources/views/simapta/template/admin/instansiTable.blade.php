@@ -24,7 +24,24 @@ active open
 @section('instansi-selected')
 <span class="selected"></span>
 @endsection
+<?php
+if($role_id === 1) {
+$addbutton = '<div class="row">
+										<div class="col-md-6">
+											<div class="btn-group">
+												<a href="/instansi/create">
+													<button id="sample_editable_1_new" class="btn green">
+													Add New <i class="fa fa-plus"></i>
+													</button>
+												</a>
+											</div>
+										</div>
+									</div>';
 
+} else {
+$addbutton = false;
+}
+?>
 @section('content')
 				<br />
 				<div class="row">
@@ -48,17 +65,7 @@ active open
 							</div>
 							<div class="portlet-body">
 								<div class="table-toolbar">
-									<div class="row">
-										<div class="col-md-6">
-											<div class="btn-group">
-												<a href="/instansi/create">
-													<button id="sample_editable_1_new" class="btn green">
-													Add New <i class="fa fa-plus"></i>
-													</button>
-												</a>
-											</div>
-										</div>
-									</div>
+									<?php echo  $addbutton; ?>
 								</div>
 								<table class="table table-striped table-bordered table-hover" id="sample_1">
 								<thead>
@@ -79,6 +86,23 @@ active open
 								</thead>
 								<tbody>
 								@forelse ($instansi as $instansi)
+								<?php
+								if($role_id === 1) {
+								$uuid = $instansi->uuid;
+								$optionbutton = '<a href="/instansi/edit/'.$uuid.'">
+																			<button id="editbuton" class="btn green">
+																			Edit <i class="fa fa-edit"></i>
+																			</button>
+																		</a>
+																		<a href="/instansi/destroy/'.$uuid.'" onclick="if(!confirm(\'Anda yakin akan menghapus data ini ?\')){return false;};">
+																			<button id="editbuton" class="btn green">
+																			Delete <i class="fa fa-close"></i>
+																			</button>
+																		</a>';
+								} else {
+								$optionbutton = false;
+								}
+								?>
 									<tr class="odd gradeX">
 									<td>
 										<input type="checkbox" class="checkboxes" value="1"/>
@@ -90,16 +114,7 @@ active open
 										{{ $instansi->alias }}
 									</td>
 									<td align="right">
-										<a href="/instansi/edit/{{ $instansi->uuid }}">
-											<button id="editbuton" class="btn green">
-											Edit <i class="fa fa-edit"></i>
-											</button>
-										</a>
-										<a href="/instansi/destroy/{{ $instansi->uuid }}" onclick="if(!confirm('Anda yakin akan menghapus data ini ?')){return false;};">
-											<button id="editbuton" class="btn green">
-											Delete <i class="fa fa-close"></i>
-											</button>
-										</a>
+										<?php echo  $optionbutton; ?>
 									</td>
 								</tr>
 								@empty

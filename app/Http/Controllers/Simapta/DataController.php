@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Simapta\DataModel;
+use App\Models\Simapta\ServerModel;
+use App\Models\Simapta\InstansiModel;
+use DB;
+
 
 class DataController extends Controller
 {
@@ -15,12 +19,39 @@ class DataController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $user       = $request->user();
+        $role_id    = $request->user()->role_id;
+
+        if($role_id <= 2) {
+
+            // Tampilkan semua data API
+            $api = DB::table('data')
+                   ->select('data.document_title', 'api.name as api', 'data.address as address', 'data.writer', 'data.uuid as uuid')
+                   ->join('api', 'data.api_id', '=', 'api.id')
+                   ->join('server', 'api.server_id', '=', 'server.id')
+                   ->join('instansi', 'server.instansi_id', '=', 'instansi.id')
+                   ->get();
+
+        } else {
+
+            $instansi_id = $request->user()->instansi_id;
+
+            // Tampilkan semua data API yang hanya miliknya
+            // $api = ApiModel::all();
+            $api = DB::table('data')
+                   ->select('data.document_title', 'api.name as api', 'data.address as address', 'data.writer', 'data.uuid as uuid')
+                   ->join('api', 'data.api_id', '=', 'api.id')
+                   ->join('server', 'api.server_id', '=', 'server.id')
+                   ->join('instansi', 'server.instansi_id', '=', 'instansi.id')
+                   ->where('instansi.id', '=', $instansi_id)
+                   ->get();
+        }
         // Tampilka data dari manifest
         $data = DataModel::all();
 
-        return view('simapta.template.admin.dataTable', ['data' => $data]);
+        return view('simapta.template.admin.dataTable', ['data' => $data, 'user' => $user]);
     }
 
     /**

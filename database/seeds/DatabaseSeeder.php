@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ServerTableSeeder');
         $this->call('ApiTableSeeder');
         $this->call('DataTableSeeder');
+        $this->call('RoleTableSeeder');
 
         Model::reguard();
     }

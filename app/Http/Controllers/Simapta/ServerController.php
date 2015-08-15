@@ -20,12 +20,27 @@ class ServerController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Tampilka data Server
-        $server = ServerModel::all();
+        $user       = $request->user();
+        $role_id    = $request->user()->role_id;
 
-        return view('simapta.template.admin.serverTable', ['server' => $server]);
+        if($role_id <= 2) {
+
+            // Tampilkan semua data Server
+            $server = ServerModel::all();
+
+        } else {
+
+            $instansi_id = $request->user()->instansi_id;
+
+            // Tampilkan semua data Instansi
+             $server = ServerModel::where('instansi_id', $instansi_id)
+                         ->get();
+
+        }
+
+        return view('simapta.template.admin.serverTable', ['server' => $server, 'user' => $user, 'role_id' => $role_id]);
     }
 
     /**
@@ -33,14 +48,29 @@ class ServerController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
 
-        $instansi_options = InstansiModel::all();
+        $user       = $request->user();
+        $role_id    = $request->user()->role_id;
+
+        if($role_id <= 2) {
+
+            // Tampilkan semua data Server
+            $instansi_options = InstansiModel::all();
+
+        } else {
+
+            $instansi_id = $request->user()->instansi_id;
+
+            // Tampilkan data Instansi hanya miliknya
+             $instansi_options = InstansiModel::where('id', $instansi_id)
+                         ->get();
+
+        }
 
         // Tampilkan Form Server
-        return view('simapta.template.admin.serverForm', ['instansi_options' => $instansi_options]);
-        //return $instansi_options;
+        return view('simapta.template.admin.serverForm', ['instansi_options' => $instansi_options, 'user' => $user]);
     }   
 
     /**
@@ -78,16 +108,34 @@ class ServerController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($uuid)
+    public function edit(Request $request)
     {
-        // Tampilka data Instansi
+        $uuid       = $request->uuid;
+        $user       = $request->user();
+        $role_id    = $request->user()->role_id;
+        $instansi_id = $request->user()->instansi_id;
+
+        // Tampilka data Server
         $server = ServerModel::where('uuid', $uuid)
                                     ->get();
+        
+        if($role_id <= 2) {
 
-        $instansi_options = InstansiModel::all();
+            // Tampilkan semua data Server
+            $instansi_options = InstansiModel::all();
+
+        } else {
+
+            $instansi_id = $request->user()->instansi_id;
+
+            // Tampilkan data Instansi hanya miliknya
+             $instansi_options = InstansiModel::where('id', $instansi_id)
+                         ->get();
+
+        }
 
         //Tampilkan Form yang terisi data
-        return view('simapta.template.admin.serverFormEdit', ['server' => $server, 'instansi_options' => $instansi_options]);
+        return view('simapta.template.admin.serverFormEdit', ['server' => $server, 'instansi_options' => $instansi_options, 'user' => $user]);
     }
 
     /**

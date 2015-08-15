@@ -15,7 +15,7 @@ class RegistrationController extends Controller
 
     use RedirectsUsers;
 
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/registersuccess';
 
     public function __construct()
     {
@@ -38,7 +38,6 @@ class RegistrationController extends Controller
                 $request, $validator
             );
         }*/
-
         Auth::login($this->create($request->all()));
         return redirect($this->redirectPath());
     }

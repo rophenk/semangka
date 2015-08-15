@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->integer('instansi_id')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->integer('is_admin')->unsigned()->nullable()->default(0);
+            $table->integer('role_id')->unsigned()->nullable()->default(5);
         });
     }
 

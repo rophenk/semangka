@@ -80,31 +80,39 @@ active open
 										</div>
 									</div>
 								</div>-->
-								<table class="table table-striped table-bordered table-hover" id="sample_1" style="width: 100%;">
+								<table class="table table-striped table-bordered table-hover" id="sample_4" style="width: 100%;">
 								<thead>
 								<tr>
 									<th class="table-checkbox">
-										<input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes"/>
+										<input type="checkbox" class="group-checkable" data-set="#sample_4 .checkboxes"/>
 									</th>
-									<th>
+									<th width="16%">
 										 Judul Dokumen
 									</th>
-									<th>
+									<th width="16%">
 										 Nama API
 									</th>
-									<th width="200px">
+									<th width="16%">
 										 Lokasi Dokumen
 									</th>
-									<th>
+									<th width="16%">
 										 Penulis
 									</th>
-									<th>
+									<th width="16%">
 										 Status
 									</th>
 								</tr>
 								</thead>
 								<tbody>
 								@forelse ($data as $data)
+								<?php
+								if($data->availability === 'available'){
+									$label = 'label-success';
+								}elseif($data->availability === 'unavailable'){
+									$label = 'label-warning';
+								}else {
+									$label = '';
+								}?>
 									<tr class="odd gradeX">
 									<td>
 										<input type="checkbox" class="checkboxes" value="1"/>
@@ -117,15 +125,19 @@ active open
 									</td>
 									<td>
 										<div style="word-break:break-all;">
-										 {{ $data->address }}
+											<a href="{{ $data->address }}" target="_blank">
+										 		{{ $data->address }}
+										 	</a>
 										</div>
 									</td>
-									<th>
-										 {{ $data->writer }}
-									</th>
 									<td>
-										<span class="label label-sm label-success">
-										available </span>
+										<div style="word-break:break-all;">	
+										 	{{ $data->writer }}
+										</div>	
+									</td>
+									<td>
+										<span class="label label-sm <?php echo $label; ?>">
+										{{ $data->availability }} </span>
 									</td>
 								</tr>
 								@empty

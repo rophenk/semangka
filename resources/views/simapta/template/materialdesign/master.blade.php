@@ -102,7 +102,11 @@
 
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ $data->document_title }} <i class="mdi-navigation-more-vert right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">
+                            <div class="title" style="width:100%; height:50px;">
+                                <span>{{ $data->document_title }}</span>
+                            </div>
+                            <i class="mdi-navigation-more-vert right"></i></span>
                         <p><a href="show/{{ $data->uuid }}">Detil</a></p>
                     </div>
                     <div class="card-reveal">
@@ -134,7 +138,11 @@
                         <img class="activator" src="img/avatar1.png">
                     </div>-->
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ $instansi->name }}<br/>
+                        <span class="card-title activator grey-text text-darken-4">
+                            <div id="kontributor" style="width:100%; height:50px;">
+                                <span>{{ $instansi->name }}</span>
+                            </div>
+                            <br/>
                             <!--<small><em><a class="red-text text-darken-1" href="#">CEO</a></em></small>-->
                         </span>
                         <!--<p>
@@ -234,8 +242,13 @@
 
     <!--  Scripts-->
     {!! Html::script('simapta/md/js/jquery-2.1.1.min.js') !!}
+    {!! Html::script('simapta/md/js/jquery.textfill.min.js') !!}
     {!! Html::script('simapta/md/js/materialize.js') !!}
     {!! Html::script('simapta/md/js/init.js') !!}
-
+    <script type="text/javascript">
+    $('#kontributor').textfill({
+        maxFontPixels: size
+    });
+    </script>
     </body>
 </html>

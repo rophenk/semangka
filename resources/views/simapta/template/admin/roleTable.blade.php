@@ -1,5 +1,5 @@
 @extends('simapta.template.admin.master')
-@section('title', 'API/XML/CSV' )
+@section('title', 'Role' )
 @section('pagestyle')
 {!! Html::style('simapta/assets/global/plugins/select2/select2.css') !!}
 {!! Html::style('simapta/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') !!}
@@ -8,31 +8,32 @@
 @section('breadcrumb')
 
 						<li>
-							<a href="/apis">API</a>
+							<a href="/roles">Role</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
 
 						<li>
-							<a href="">API Terdaftar</a>
+							<a href="">Role Terdaftar</a>
 						</li>
 @endsection
 
-@section('instansi-active')
+@section('user-active')
 active open
 @endsection
 
-@section('instansi-selected')
+@section('user-selected')
 <span class="selected"></span>
 @endsection
 
 @section('content')
+				<br />
 				<div class="row">
 					<div class="col-md-12">
 						<!-- BEGInsiN EXAMPLE TABLE PORTLET-->
 						<div class="portlet box grey-cascade">
 							<div class="portlet-title">
 								<div class="caption">
-									<i class="fa fa-globe"></i>API Terdaftar
+									<i class="fa fa-globe"></i>Role Terdaftar
 								</div>
 								<div class="tools">
 									<a href="javascript:;" class="collapse">
@@ -50,92 +51,65 @@ active open
 									<div class="row">
 										<div class="col-md-6">
 											<div class="btn-group">
-												<a href="/apis/create">
+												<a href="/role/create">
 													<button id="sample_editable_1_new" class="btn green">
 													Add New <i class="fa fa-plus"></i>
 													</button>
 												</a>
 											</div>
 										</div>
-										<!--<div class="col-md-6">
-											<div class="btn-group pull-right">
-												<button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-												</button>
-												<ul class="dropdown-menu pull-right">
-													<li>
-														<a href="javascript:;">
-														Print </a>
-													</li>
-													<li>
-														<a href="javascript:;">
-														Save as PDF </a>
-													</li>
-													<li>
-														<a href="javascript:;">
-														Export to Excel </a>
-													</li>
-												</ul>
-											</div>
-										</div>-->
 									</div>
 								</div>
-								<table class="table table-striped table-bordered table-hover" id="sample_3">
+								<table class="table table-striped table-bordered table-hover" id="sample_1">
 								<thead>
 								<tr>
 									<th class="table-checkbox">
-										<input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
+										<input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes"/>
 									</th>
-									<th width="16%">
-										 Nama API
+									<th>
+										 Id
 									</th>
-									<th width="16%">
-										 Nama Server
+									<th>
+										 Nama Role
 									</th>
-									<th width="16%">
-										 Alamat API
+									<th>
+										 Description
 									</th>
-									<th width="10%">
-										 Tipe API
-									</th>
-									<th width="22%">
+									<th align="right">
 										 Option
 									</th>
 								</tr>
 								</thead>
 								<tbody>
-								@forelse ($api as $api)
+								@forelse ($role as $role)
+								<?php
+								$optionbutton = '<a href="/role/edit/'.$role->id.'">
+																			<button id="editbuton" class="btn green">
+																			Edit <i class="fa fa-edit"></i>
+																			</button>
+																		</a>
+																		<a href="/role/destroy/'.$role->id.'" onclick="if(!confirm(\'Anda yakin akan menghapus data ini ?\')){return false;};">
+																			<button id="editbuton" class="btn green">
+																			Delete <i class="fa fa-close"></i>
+																			</button>
+																		</a>';
+								
+								?>
 									<tr class="odd gradeX">
 									<td>
 										<input type="checkbox" class="checkboxes" value="1"/>
 									</td>
 									<td>
-										{{ $api->name }}
+										{{ $role->id }}
 									</td>
 									<td>
-										{{ $api->server }}<br />
-										{{ $api->instansi }}
+										{{ $role->name }}
 									</td>
-									<td class="center">
-										<div style="word-break:break-all;">
-											<a href="{{ $api->address }}" target="_blank">
-										 		{{ $api->address }}
-										 	</a>
-										</div>
+									<td width="40%">
+										{{ $role->description }}
 									</td>
-									<th>
-										 {{ $api->type }}
-									</th>
-									<td>
-										<a href="/apis/edit/{{ $api->uuid }}">
-											<button id="editbuton" class="btn green">
-											Edit <i class="fa fa-edit"></i>
-											</button>
-										</a>
-										<a href="/apis/destroy/{{ $api->uuid }}" onclick="if(!confirm('Anda yakin akan menghapus data ini ?')){return false;};">
-											<button id="deletebuton" class="btn green">
-											Delete <i class="fa fa-close"></i>
-											</button>
-										</a>
+									<td align="right">
+										<?php echo  $optionbutton; ?>
 									</td>
 								</tr>
 								@empty

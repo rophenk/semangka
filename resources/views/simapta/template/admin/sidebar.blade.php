@@ -57,19 +57,27 @@
 							</li>
 						</ul>
 					</li>
-					<!--<li>
+					@if($user->role_id <= 2)
+					<li class="@yield('user-active')">
 						<a href="javascript:;">
 						<i class="icon-user"></i>
-						<span class="title">Users</span>
+						<span class="title">Users & Roles</span>
 						<span class="arrow "></span>
+						@yield('user-selected')
 						</a>
 						<ul class="sub-menu">
 							<li>
-								<a href="user">
+								<a href="/users">
 								Manage Users</a>
 							</li>
+							<li>
+								<a href="/roles">
+								Manage Roles</a>
+							</li>
 						</ul>
-					</li>-->
+					</li>
+					@endif	
+					
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>

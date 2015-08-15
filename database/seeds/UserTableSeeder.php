@@ -16,6 +16,9 @@ class UserTableSeeder extends Seeder
         'name' => 'Administrator',
         'email' => 'admin@simapta.com',
         'password' => bcrypt('123'),
+        'instansi_id' => '1',
+        'is_admin' => '1',
+        'role_id' => '1',
         ]);
     }
 }

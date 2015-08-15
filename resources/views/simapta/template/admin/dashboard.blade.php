@@ -25,7 +25,7 @@ active
 						</div>
 						<div class="details">
 							<div class="number">
-								 10
+								 {{ $data}}
 							</div>
 							<div class="desc">
 								 Dokumen terindex
@@ -40,7 +40,7 @@ active
 						</div>
 						<div class="details">
 							<div class="number">
-								 1
+								 {{ $api }}
 							</div>
 							<div class="desc">
 								 API
@@ -55,7 +55,7 @@ active
 						</div>
 						<div class="details">
 							<div class="number">
-								 1
+								 {{ $server }}
 							</div>
 							<div class="desc">
 								 Server
@@ -70,7 +70,9 @@ active
 						</div>
 						<div class="details">
 							<div class="number">
-								 1
+								 
+								 {{ $instansi }}
+								 
 							</div>
 							<div class="desc">
 								 Instansi Kontributor

@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Simapta\ApiModel;
 use App\Models\Simapta\ServerModel;
+use App\Models\Simapta\InstansiModel;
 use DB;
 
 class ApiController extends Controller
@@ -18,12 +19,37 @@ class ApiController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Tampilka data API
-        $api = ApiModel::all();
 
-        return view('simapta.template.admin.apisTable', ['api' => $api]);
+        $user       = $request->user();
+        $role_id    = $request->user()->role_id;
+
+        if($role_id <= 2) {
+
+            // Tampilkan semua data API
+            $api = DB::table('api')
+                   ->select('api.name as name', 'api.type as type', 'server.name as server', 'instansi.name as instansi', 'api.uuid as uuid', 'api.address as address')
+                   ->join('server', 'api.server_id', '=', 'server.id')
+                   ->join('instansi', 'server.instansi_id', '=', 'instansi.id')
+                   ->get();
+
+        } else {
+
+            $instansi_id = $request->user()->instansi_id;
+
+            // Tampilkan semua data API yang hanya miliknya
+            // $api = ApiModel::all();
+            $api = DB::table('api')
+                   ->select('api.name as name', 'api.type as type', 'server.name as server', 'instansi.name as instansi', 'api.uuid as uuid', 'api.address as address')
+                   ->join('server', 'api.server_id', '=', 'server.id')
+                   ->join('instansi', 'server.instansi_id', '=', 'instansi.id')
+                   ->where('instansi.id', '=', $instansi_id)
+                   ->get();
+        }
+        
+
+        return view('simapta.template.admin.apisTable', ['api' => $api, 'user' => $user]);
     }
 
     /**
@@ -31,12 +57,33 @@ class ApiController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //Populasi dropdown Server
-        $server_options = ServerModel::all();
+        $user       = $request->user();
+        $role_id    = $request->user()->role_id;
+
+        if($role_id <= 2) {
+
+            //Populasi dropdown Server
+            $server_options = DB::table('server')
+                           ->select('server.name as name', 'server.id as id')
+                           ->join('instansi', 'server.instansi_id', '=', 'instansi.id')
+                           ->get();
+
+        } else {
+
+            $instansi_id = $request->user()->instansi_id;
+
+            //Populasi dropdown Server
+            $server_options = DB::table('server')
+                           ->select('server.name as name', 'server.id as id')
+                           ->join('instansi', 'server.instansi_id', '=', 'instansi.id')
+                           ->where('instansi.id', '=', $instansi_id)
+                           ->get();
+        }
+        
         // Tampilkan Form AOI
-        return view('simapta.template.admin.apisForm', ['server_options' => $server_options]);
+        return view('simapta.template.admin.apisForm', ['server_options' => $server_options, 'user' => $user]);
     }
 
     /**
@@ -74,16 +121,34 @@ class ApiController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($uuid)
+    public function edit(Request $request)
     {
+        $uuid = $request->uuid;
+        $user       = $request->user();
+        $role_id    = $request->user()->role_id;
+        $instansi_id = $request->user()->instansi_id;
+
         // Tampilkan data API
         $apis = ApiModel::where('uuid', $uuid)
                                     ->get();
 
-        $server_options = ServerModel::all();
+        if($role_id <= 2) {
+
+            // Tampilkan semua data Server
+            $server_options = ServerModel::all();
+
+        } else {
+
+            $instansi_id = $request->user()->instansi_id;
+
+            // Tampilkan data Server hanya miliknya
+            $server_options = ServerModel::where('instansi_id', $instansi_id)
+                         ->get();
+
+        }
 
         //Tampilkan Form yang terisi data
-        return view('simapta.template.admin.apisFormEdit', ['apis' => $apis, 'server_options' => $server_options]);
+        return view('simapta.template.admin.apisFormEdit', ['apis' => $apis, 'server_options' => $server_options, 'user' => $user]);
     }
 
     /**

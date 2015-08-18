@@ -96,7 +96,7 @@
             @forelse ($data as $data)
             <?php 
             $divnewest = 'title-'.$data->id;
-            $jstextfit .= "window.fitText(document.getElementById('".$divnewest."'), 1.2)\n";
+            $jstextfit .= "window.fitText(document.getElementById('".$divnewest."'), 1)\n";
             ?>
             <div class="col s12 m4 l4">
                 <div class="card">
@@ -142,7 +142,14 @@
     <div class="container">
         <h2 class="header text_b"> Kontributor </h2>
         <div class="row">
+            <?php
+            $kontributortextfit ='';
+            ?>
             @forelse ($instansi as $instansi)
+            <?php
+            $divkontributor = 'kontributor-'.$instansi->id;
+            $kontributortextfit .= "window.fitText(document.getElementById('".$divkontributor."'), 1.2)\n";
+            ?>
             <div class="col s12 m3">
                 <div class="card card-avatar">
                     <!--<div class="waves-effect waves-block waves-light">
@@ -150,7 +157,7 @@
                     </div>-->
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">
-                            <div id="kontributor" style="width:100%; height:50px;">
+                            <div id="<?php echo $divkontributor; ?>" style="width:100%; height:50px;">
                                 <span>{{ $instansi->name }}</span>
                             </div>
                             <br/>
@@ -262,7 +269,7 @@
     </script>-->
     {!! Html::script('simapta/md/js/fittext.js') !!}
     <script type="text/javascript">
-    window.fitText(document.getElementById('kontributor'), 1.2)
+    <?php echo $kontributortextfit ?>
     </script>
     
     <script type="text/javascript">

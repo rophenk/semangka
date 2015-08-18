@@ -31,7 +31,14 @@
     <div class="container">
         <h2 class="header text_b">Hasil Pencarian</h2>
         <div class="row">
+            <?php
+            $jstextfit ='';
+            ?>
             @forelse ($data as $data)
+            <?php 
+            $divnewest = 'title-'.$data->id;
+            $jstextfit .= "window.fitText(document.getElementById('".$divnewest."'), 1.2)\n";
+            ?>
             <div class="col s12 m4 l4">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
@@ -45,8 +52,12 @@
 
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ $data->document_title }} <i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="show/{{ $data->uuid }}">Detil</a></p>
+                        <span class="card-title activator grey-text text-darken-4">
+                            <div id="<?php echo $divnewest; ?>" style="width:100%; height:50px;">
+                                <span><a href="show/{{ $data->uuid }}">{{ $data->document_title }}</a></span>
+                            </div>
+                            <i class="mdi-navigation-more-vert right"></i>
+                    </span>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ $data->document_title }} <i class="mdi-navigation-close right"></i></span>
@@ -144,6 +155,10 @@
     {!! Html::script('simapta/md/js/jquery-2.1.1.min.js') !!}
     {!! Html::script('simapta/md/js/materialize.js') !!}
     {!! Html::script('simapta/md/js/init.js') !!}
+    {!! Html::script('simapta/md/js/fittext.js') !!}
+    <script type="text/javascript">
+        <?php echo $jstextfit; ?>
+    </script>
 
     </body>
 </html>

@@ -124,7 +124,7 @@ class UserController extends Controller
             ->update([
                 'name' => $request->name, 
                 'email' => $request->email,
-                'password' => bcrypt($request->password),
+                'password' => bcrypt($request->newpassword),
                 'role_id' => $request->role_id, 
                 'instansi_id' => $request->instansi_id 
                 ]);

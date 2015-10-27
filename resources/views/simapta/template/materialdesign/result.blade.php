@@ -54,7 +54,7 @@
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">
                             <div id="<?php echo $divnewest; ?>" style="width:100%; height:50px;">
-                                <span><a href="show/{{ $data->uuid }}">{{ $data->document_title }}</a></span>
+                                <span><a href="/show/{{ $data->uuid }}">{{ $data->document_title }}</a></span>
                             </div>
                             <i class="mdi-navigation-more-vert right"></i>
                     </span>

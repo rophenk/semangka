@@ -8,7 +8,7 @@ class VerifyCsrf extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken
     * @var array
     */
    protected $routes = [
-           'api/search/result',
+           '/api/search/result',
    ];
 
     /**

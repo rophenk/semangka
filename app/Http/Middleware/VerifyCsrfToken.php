@@ -29,4 +29,6 @@ class VerifyCsrfToken extends BaseVerifier
 
 	    return $request->session()->token() == $token;
 	}
+
+	
 }

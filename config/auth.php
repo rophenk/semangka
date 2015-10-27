@@ -64,4 +64,6 @@ return [
         'expire' => 60,
     ],
 
+    'no_csrf' => array('nocsrf/path/1', 'no/csrf/path/2'),
+
 ];

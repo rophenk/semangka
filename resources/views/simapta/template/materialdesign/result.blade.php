@@ -68,7 +68,7 @@
 
                             } else {
 
-                                echo '<img class="activator" src="/logo.png">';
+                                echo '<img class="activator" src="/logo.png" width="50%">';
 
                             }
 
@@ -78,7 +78,7 @@
 
                         }else{
 
-                            echo '<img class="activator" src="/logo.png">';
+                            echo '<img class="activator" src="/logo.png" width="50%">';
                             
                         }?>
 

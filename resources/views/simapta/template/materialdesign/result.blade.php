@@ -44,10 +44,42 @@
                     <div class="card-image waves-effect waves-block waves-light">
                         <?php if (!empty($data->cover_image)) {
 
-                            echo '<img class="activator" src="'.$data->cover_image.'">';
+                            $curl = curl_init();
+
+                            curl_setopt($curl, CURLOPT_URL, $data->cover_image);
+                            // Only header
+                            curl_setopt($curl, CURLOPT_NOBODY, true);
+                            curl_setopt($curl, CURLOPT_HEADER, true);
+                            // Do not print anything to output
+                            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+                            // get last modified date
+                            curl_setopt($curl, CURLOPT_FILETIME, true);
+
+                            $result = curl_exec($curl);
+                            // Get info
+                            $info = curl_getinfo($curl);
+
+                            $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+                            if ($httpcode=="200") {
+
+                                echo '<img class="activator" src="'.$data->cover_image.'">';
+
+                            } else {
+
+                                echo '<img class="activator" src="logo.png">';
+
+                            }
+
+                            curl_close($curl);
+
+                            
 
                         }else{
 
+                            echo '<img class="activator" src="'.$data->cover_image.'">';
+                            
                         }?>
 
                     </div>

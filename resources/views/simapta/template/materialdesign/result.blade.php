@@ -68,7 +68,7 @@
 
                             } else {
 
-                                echo '<img class="activator" src="logo.png">';
+                                echo '<img class="activator" src="/logo.png">';
 
                             }
 
@@ -78,7 +78,7 @@
 
                         }else{
 
-                            echo '<img class="activator" src="'.$data->cover_image.'">';
+                            echo '<img class="activator" src="/logo.png">';
                             
                         }?>
 

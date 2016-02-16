@@ -108,6 +108,24 @@ class SearchController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function showJSON($uuid)
+    {
+        // Menampilkan Detail data
+        $data = DB::table('data')
+                    ->where('uuid', $uuid)
+                    ->get();
+
+         return response()->json(
+            $data, 200
+            );
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

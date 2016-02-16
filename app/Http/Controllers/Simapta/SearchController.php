@@ -64,6 +64,24 @@ class SearchController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function resultJSON(Request $request)
+    {
+        // Menampilkan 6 Data Terbaru
+        $data = DB::table('data')
+                    ->where('document_title' , 'LIKE' , "%{$request->keyword}%")
+                    ->orWhere('description', 'LIKE' , "%{$request->keyword}%" )
+                    ->get();
+
+        return response()->json(
+            $data, 200
+            );
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @return Response

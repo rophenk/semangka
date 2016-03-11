@@ -32,7 +32,7 @@ Route::post('/result', 'Simapta\SearchController@result');
 Route::post('/api/search/result', 'Simapta\SearchController@result');
 Route::post('/api/v1/search/result', 'Simapta\SearchController@resultJSON');
 Route::get('/api/v1/show/{uuid?}', 'Simapta\SearchController@showJSON');
-
+Route::get('/api/v1/statistics', 'Simapta\DashboardController@statisticsJSON');
 /**
  * Route untuk halaman Back End
  */

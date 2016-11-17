@@ -78,7 +78,14 @@ class DashboardController extends Controller
         $data       = DashboardController::totalData();
         $user       = $request->user();
         $name   = $request->user()->name;
-        return view('simapta.template.admin.dashboard', ['instansi' => $instansi, 'api' => $api, 'server' => $server, 'data' => $data, 'user' => $user, 'fullname' => $name]);
+        return view('simapta.template.admin.dashboard', [
+            'instansi' => $instansi, 
+            'api'      => $api, 
+            'server'   => $server, 
+            'data'     => $data, 
+            'user'     => $user, 
+            'fullname' => $name
+            ]);
     }
 
     public function statisticsJSON(Request $request)
@@ -88,8 +95,25 @@ class DashboardController extends Controller
         $server     = DashboardController::totalServer();
         $data       = DashboardController::totalData();
         return response()->json(
-            ['instansi' => $instansi, 'api' => $api, 'server' => $server, 'data' => $data], 200
-            );}
+            [
+            'instansi' => $instansi, 
+            'api' => $api, 
+            'server' => $server, 
+            'data' => $data
+            ], 200);
+    }
+
+    public function latestDocsJSON()
+    {
+        $data = DataModel::where('availability', 'available')
+                ->orderBy('id', 'desc')
+                ->take(5)
+                ->get();
+        return response()->json(
+            [
+            'data' => $data
+            ], 200);
+    }
 
     
 }

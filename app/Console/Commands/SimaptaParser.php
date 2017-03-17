@@ -270,8 +270,11 @@ class SimaptaParser extends Command
                 } else {
 
                     // Jika last modified berbeda, ambil data dari remote file lalu simpan di local
-                    $contents = SimaptaParser::curl_get_data($url);
-                    Storage::disk('local')->append('simapta/temp/api.csv', $contents);
+                    
+                    //** disable sementara **//
+                    
+                    //$contents = SimaptaParser::curl_get_data($url);
+                    //Storage::disk('local')->append('simapta/temp/api.csv', $contents);
                     // Parsing file csv lokal
                     $csvfile = storage_path().'/app/simapta/temp/api.csv';
                     

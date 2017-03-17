@@ -229,6 +229,9 @@ class SimaptaParser extends Command
 
         // Ambil data url address API dari database tabel api
         $apis = ApiModel::all();
+        
+        // Untuk menampilkan JSON dari api
+        //$this->info($apis);
 
         $output = date ("Y-m-d H:i:s")."\n";
 
@@ -270,7 +273,7 @@ class SimaptaParser extends Command
                     $contents = SimaptaParser::curl_get_data($url);
                     Storage::disk('local')->append('simapta/temp/api.csv', $contents);
                     // Parsing file csv lokal
-                    $csvfile = storage_path().'\app\simapta\temp\api.csv';
+                    $csvfile = storage_path().'/app/simapta/temp/api.csv';
                     
                     // hapus dulu data yang didapat dari api lama dari database
                     $deletedRows = DataModel::where('api_id', '=', $id)->delete();

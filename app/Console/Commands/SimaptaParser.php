@@ -49,7 +49,7 @@ class SimaptaParser extends Command
     public function curl_get_data($url) 
     {
         $ch = curl_init();
-        $timeout = 5;
+        $timeout = 360;
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
@@ -270,11 +270,8 @@ class SimaptaParser extends Command
                 } else {
 
                     // Jika last modified berbeda, ambil data dari remote file lalu simpan di local
-                    
-                    //** disable sementara **//
-                    
-                    //$contents = SimaptaParser::curl_get_data($url);
-                    //Storage::disk('local')->append('simapta/temp/api.csv', $contents);
+                    $contents = SimaptaParser::curl_get_data($url);
+                    Storage::disk('local')->append('simapta/temp/api.csv', $contents);
                     // Parsing file csv lokal
                     $csvfile = storage_path().'/app/simapta/temp/api.csv';
                     

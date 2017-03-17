@@ -245,7 +245,7 @@ class SimaptaParser extends Command
             $db_last_modified = $api['last_modified'];
             $this->info('');
             $this->info('Memeriksa file API di tujuan');
-
+            $this->info($url);
             // Ambil data last modified dari remote file
             $last_modified = SimaptaParser::curl_get_last_modified($url);
             

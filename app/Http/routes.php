@@ -31,6 +31,7 @@ Route::get('/show/{uuid?}', 'Simapta\SearchController@show');
 Route::post('/result', 'Simapta\SearchController@result');
 Route::post('/api/search/result', 'Simapta\SearchController@result');
 Route::post('/api/v1/search/result', 'Simapta\SearchController@resultJSON');
+Route::post('/api/v1/search/resultdata', 'Simapta\SearchController@resultDataJSON');
 Route::get('/api/v1/show/{uuid?}', 'Simapta\SearchController@showJSON');
 Route::get('/api/v1/statistics', 'Simapta\DashboardController@statisticsJSON');
 Route::get('/api/v1/latest', 'Simapta\DashboardController@latestDocsJSON');

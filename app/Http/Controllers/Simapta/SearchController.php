@@ -81,6 +81,17 @@ class SearchController extends Controller
             );
     }
 
+    public function resultDataJSON(Request $request)
+    {
+        $data = DB::table('data')
+                    ->where('document_title' , 'LIKE' , "%{$request->keyword}%")
+                    ->orWhere('description', 'LIKE' , "%{$request->keyword}%" )
+                    ->simplePaginate(10);
+        return response()->json(
+            $data, 200
+            );
+    }
+
     /**
      * Store a newly created resource in storage.
      *

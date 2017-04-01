@@ -40,6 +40,7 @@ class SearchController extends Controller
     {
         // Menampilkan 3 Data Terbaru
         $data = DB::table('data')
+                    ->where('availability', '=', 'available')
                     ->orderBy('id', 'desc')
                     ->skip(0)
                     ->take(3)
@@ -58,6 +59,7 @@ class SearchController extends Controller
         $data = DB::table('data')
                     ->where('document_title' , 'LIKE' , "%{$request->keyword}%")
                     ->orWhere('description', 'LIKE' , "%{$request->keyword}%" )
+                    ->where('availability', '=', 'available')
                     ->get();
 
         return view('simapta.template.materialdesign.result', ['data' => $data]);
@@ -74,6 +76,7 @@ class SearchController extends Controller
         $data = DB::table('data')
                     ->where('document_title' , 'LIKE' , "%{$request->keyword}%")
                     ->orWhere('description', 'LIKE' , "%{$request->keyword}%" )
+                    ->where('availability', '=', 'available')
                     ->get();
 
         return response()->json(
@@ -86,6 +89,7 @@ class SearchController extends Controller
         $data = DB::table('data')
                     ->where('document_title' , 'LIKE' , "%{$request->keyword}%")
                     ->orWhere('description', 'LIKE' , "%{$request->keyword}%" )
+                    ->where('availability', '=', 'available')
                     ->simplePaginate(10);
         return response()->json(
             $data, 200
